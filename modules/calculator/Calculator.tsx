@@ -2,7 +2,7 @@
 
 import { useEffect, useReducer } from "react";
 
-import { BackspaceIcon } from "@/components/ui/Icons";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import {
   calculatorReducer,
   initialCalculatorState,
@@ -100,7 +100,7 @@ export function Calculator() {
           type="button"
           aria-label="حذف رقم آخر"
         >
-          <BackspaceIcon className="mx-auto h-5 w-5" />
+          <ArrowUpRight className="mx-auto h-5 w-5" />
         </button>
         <button className={buttonClass("utility")} onClick={() => dispatch({ type: "toggle-sign" })} type="button" aria-label="تغییر علامت عدد">
           ±

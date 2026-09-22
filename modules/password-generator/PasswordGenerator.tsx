@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
 
-import { CheckIcon, CopyIcon, RefreshIcon } from "@/components/ui/Icons";
+import { Copy, Check, RefreshCw } from "@/components/ui/Icons";
 import {
   calculatePasswordStrength,
   generatePassword,
-  type PasswordOptions
+  type PasswordOptions,
 } from "@/modules/password-generator/password.logic";
 
 const initialOptions: PasswordOptions = {
@@ -14,16 +14,20 @@ const initialOptions: PasswordOptions = {
   uppercase: true,
   lowercase: true,
   numbers: true,
-  symbols: true
+  symbols: true,
 };
 
 type BooleanOption = Exclude<keyof PasswordOptions, "length">;
 
-const optionLabels: Array<{ key: BooleanOption; label: string; description: string }> = [
+const optionLabels: Array<{
+  key: BooleanOption;
+  label: string;
+  description: string;
+}> = [
   { key: "uppercase", label: "حروف بزرگ", description: "A–Z" },
   { key: "lowercase", label: "حروف کوچک", description: "a–z" },
   { key: "numbers", label: "اعداد", description: "0–9" },
-  { key: "symbols", label: "کاراکترهای خاص", description: "! @ # $ …" }
+  { key: "symbols", label: "کاراکترهای خاص", description: "! @ # $ …" },
 ];
 
 export function PasswordGenerator() {
@@ -34,7 +38,7 @@ export function PasswordGenerator() {
 
   const strength = useMemo(
     () => calculatePasswordStrength(password, options),
-    [password, options]
+    [password, options],
   );
 
   function regenerate(nextOptions = options) {
@@ -83,8 +87,12 @@ export function PasswordGenerator() {
       <section className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft dark:border-zinc-800 dark:bg-zinc-900/80 sm:p-7">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-zinc-950 dark:text-white">تنظیمات رمز عبور</p>
-            <p className="mt-1 text-sm leading-6 text-zinc-500 dark:text-zinc-400">طول رمز و گروه‌های کاراکتری را تنظیم کنید.</p>
+            <p className="text-sm font-semibold text-zinc-950 dark:text-white">
+              تنظیمات رمز عبور
+            </p>
+            <p className="mt-1 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+              طول رمز و گروه‌های کاراکتری را تنظیم کنید.
+            </p>
           </div>
           <span className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-semibold text-brand-700 dark:bg-brand-950 dark:text-brand-300">
             فقط روی دستگاه شما
@@ -93,10 +101,16 @@ export function PasswordGenerator() {
 
         <div className="mt-7">
           <div className="flex items-center justify-between">
-            <label htmlFor="password-length" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <label
+              htmlFor="password-length"
+              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+            >
               طول رمز
             </label>
-            <output dir="ltr" className="min-w-10 rounded-lg bg-zinc-100 px-2.5 py-1 text-center text-sm font-semibold tabular-nums text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
+            <output
+              dir="ltr"
+              className="min-w-10 rounded-lg bg-zinc-100 px-2.5 py-1 text-center text-sm font-semibold tabular-nums text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+            >
               {options.length}
             </output>
           </div>
@@ -107,19 +121,26 @@ export function PasswordGenerator() {
             max={64}
             step={1}
             value={options.length}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => updateLength(Number(event.target.value))}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              updateLength(Number(event.target.value))
+            }
             className="mt-4 h-2 w-full cursor-pointer accent-brand-600"
           />
-          <div dir="ltr" className="mt-2 flex justify-between text-xs text-zinc-400">
-            <span>8</span>
+          <div
+            dir="ltr"
+            className="mt-2 flex justify-between text-xs text-zinc-400"
+          >
             <span>64</span>
+            <span>8</span>
           </div>
         </div>
 
         <div className="mt-7 space-y-2.5">
           {optionLabels.map((item) => {
             const checked = options[item.key];
-            const activeCount = optionLabels.filter((option) => options[option.key]).length;
+            const activeCount = optionLabels.filter(
+              (option) => options[option.key],
+            ).length;
             const isLastActive = checked && activeCount === 1;
 
             return (
@@ -128,10 +149,20 @@ export function PasswordGenerator() {
                 className="flex cursor-pointer items-center justify-between rounded-2xl border border-zinc-200 px-4 py-3 transition hover:border-brand-300 hover:bg-brand-50/40 dark:border-zinc-800 dark:hover:border-brand-800 dark:hover:bg-brand-950/20"
               >
                 <span>
-                  <span className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">{item.label}</span>
-                  <span dir="ltr" className="mt-0.5 block text-right text-xs text-zinc-400">{item.description}</span>
+                  <span className="block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                    {item.label}
+                  </span>
+                  <span
+                    dir="ltr"
+                    className="mt-0.5 block text-right text-xs text-zinc-400"
+                  >
+                    {item.description}
+                  </span>
                 </span>
-                <span dir="ltr" className="relative inline-flex h-6 w-11 items-center">
+                <span
+                  dir="ltr"
+                  className="relative inline-flex h-6 w-11 items-center"
+                >
                   <input
                     className="peer sr-only"
                     type="checkbox"
@@ -155,7 +186,9 @@ export function PasswordGenerator() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-sm font-semibold text-white">رمز تولیدشده</p>
-              <p className="mt-1 text-sm text-zinc-400">رمز مستقیماً در مرورگر شما تولید می‌شود.</p>
+              <p className="mt-1 text-sm text-zinc-400">
+                رمز مستقیماً در مرورگر شما تولید می‌شود.
+              </p>
             </div>
             <button
               type="button"
@@ -163,7 +196,7 @@ export function PasswordGenerator() {
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 text-zinc-300 transition hover:border-brand-700 hover:text-brand-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
               aria-label="ساخت رمز جدید"
             >
-              <RefreshIcon className="h-4 w-4" />
+              <RefreshCw className="h-4 w-4" />
             </button>
           </div>
 
@@ -180,7 +213,11 @@ export function PasswordGenerator() {
                 onClick={copyPassword}
                 className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-brand-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-300"
               >
-                {copied ? <CheckIcon className="h-4 w-4" /> : <CopyIcon className="h-4 w-4" />}
+                {copied ? (
+                  <Check className="h-4 w-4" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
                 {copied ? "کپی شد" : "کپی رمز"}
               </button>
             </div>
@@ -189,8 +226,12 @@ export function PasswordGenerator() {
           <div className="mt-7">
             <div className="flex items-end justify-between gap-4">
               <div>
-                <p className="text-xs font-medium text-zinc-500">قدرت تقریبی رمز</p>
-                <p className="mt-1 text-lg font-semibold text-white">{strength.label}</p>
+                <p className="text-xs font-medium text-zinc-500">
+                  قدرت تقریبی رمز
+                </p>
+                <p className="mt-1 text-lg font-semibold text-white">
+                  {strength.label}
+                </p>
               </div>
               <p className="text-sm tabular-nums text-zinc-400">
                 حدود <span dir="ltr">{strength.entropyBits}</span> بیت
@@ -203,7 +244,8 @@ export function PasswordGenerator() {
               />
             </div>
             <p className="mt-3 text-xs leading-6 text-zinc-500">
-              این ارزیابی بر اساس طول رمز و اندازه مجموعه کاراکترهای انتخاب‌شده محاسبه می‌شود و تضمینی در برابر تمام مدل‌های حمله نیست.
+              این ارزیابی بر اساس طول رمز و اندازه مجموعه کاراکترهای انتخاب‌شده
+              محاسبه می‌شود و تضمینی در برابر تمام مدل‌های حمله نیست.
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-export type ToolIconName = "password" | "calculator";
+export type ToolIconName = "password" | "calculator" | "lorem";
 
 export interface ToolDefinition {
   slug: string;
@@ -30,7 +30,16 @@ export const tools: ToolDefinition[] = [
     icon: "calculator",
     accent: "سریع",
     status: "available"
-  }
+  },
+  {
+     slug: "lorem-generator",
+  name: "مولد لورم ایپسوم",
+  description: "ساخت متن نمونه برای طراحی رابط کاربری",
+  href: "/tools/lorem-generator",
+  icon: "lorem",
+  accent: "طراحی",
+  status: "available"
+}
 ];
 
 export function getToolBySlug(slug: string) {
