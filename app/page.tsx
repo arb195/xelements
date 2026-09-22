@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { ArrowUpRightIcon } from "@/components/ui/Icons";
+import { ArrowUpRight } from "@/components/ui/Icons";
 import { ToolCard } from "@/components/ui/ToolCard";
 import { tools } from "@/lib/tools";
 
@@ -31,7 +31,7 @@ export default function HomePage() {
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950"
               >
                 مشاهده ابزارها
-                <ArrowUpRightIcon className="h-4 w-4 scale-x-[-1]" />
+                <ArrowUpRight className="h-4 w-4 scale-x-[-1]" />
               </Link>
               <span className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white/70 px-5 py-3 text-sm font-medium text-zinc-600 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-400">
                 {tools.length} ابزار فعال · ابزارهای بیشتر در راه‌اند

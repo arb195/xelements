@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { CalculatorIcon } from "@/components/ui/Icons";
+import { Calculator as CalculatorIcon } from "@/components/ui/Icons";
 import { Calculator } from "@/modules/calculator/Calculator";
 
 export const metadata: Metadata = {
