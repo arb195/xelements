@@ -25,7 +25,7 @@ export function ToolCard({ tool }: { tool: ToolDefinition }) {
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-500/0 via-brand-500/5 to-brand-500/20 opacity-0 transition-opacity duration-200 ease-linear group-hover:opacity-100" />
 
-      <div className="relative">
+      <Link href={tool.href} className="relative">
         <motion.div
           whileHover={{ rotate: 8, scale: 1.12 }}
           transition={{ duration: 0.18, ease: "linear" }}
@@ -37,14 +37,14 @@ export function ToolCard({ tool }: { tool: ToolDefinition }) {
         <h3 className="mt-6 text-xl font-bold">{tool.name}</h3>
         <p className="mt-2 text-zinc-600 dark:text-zinc-400">{tool.description}</p>
 
-        <Link
+        <div
           className="mt-6 flex items-center justify-between rounded-xl bg-zinc-950 px-4 py-3 text-white transition-all duration-200 ease-linear hover:bg-brand-600 hover:shadow-lg"
-          href={tool.href}
+          
         >
           باز کردن ابزار
           <ArrowUpRight />
-        </Link>
-      </div>
+        </div>
+      </Link>
     </motion.article>
   );
 }
